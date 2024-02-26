@@ -1,0 +1,20 @@
+public Transaction[] getTransaction(int custID, Date startDate, Date endDate) {
+		for (int i = 0; i < index; i++) {
+			if (customers[i].getCustomerID() == custID) {
+				int idx = 0;
+				Transaction[] ta = new Transaction[customers[i].getAccount().counter];
+				for (int j = 0; j < customers[i].getAccount().counter; j++) {
+					if ((customers[i].getAccount().getTransactions()[j].getDate().after(startDate)
+							|| customers[i].getAccount().getTransactions()[j].getDate().equals(startDate))
+							&& (customers[i].getAccount().getTransactions()[j].getDate().before(endDate)
+									|| customers[i].getAccount().getTransactions()[j].getDate().equals(endDate))) {
+						ta[idx] = customers[i].getAccount().getTransactions()[j];
+						idx++;
+					}
+
+				}
+				return ta;
+			}
+		}
+		return new Transaction[0];
+	}
